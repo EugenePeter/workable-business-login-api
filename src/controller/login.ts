@@ -36,3 +36,23 @@ export const login = async (req: any, res: any) => {
     });
   }
 };
+
+const vacancies = [
+  {
+    software_engineer: {
+      id: "",
+      company_id: "",
+      applicants: ["applicant_1", "applicant_1", "applicant_1"],
+    },
+  },
+];
+
+const company = {
+  company_id: "",
+  vacancies: ["vancancy_id_here", "vancancy_id_here", "vancancy_id_here"],
+};
+
+const applicant = {
+  applicant_id: "",
+  applications: ["vacancy_id_here", "vacancy_id_here", "vacancy_id_here"],
+};
