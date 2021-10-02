@@ -8,7 +8,7 @@ var controller_1 = require("../controller");
 var router = express_1.default.Router();
 /* GET home page. */
 router.get("/", function (req, res, next) {
-    res.render("index", { title: "Express" });
+    res.send("welcome");
 });
 router.post("/login", controller_1.login);
 // router.get("/registerCompany", (req, res) => {

@@ -86,4 +86,21 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
     });
 }); };
 exports.login = login;
+var vacancies = [
+    {
+        software_engineer: {
+            id: "",
+            company_id: "",
+            applicants: ["applicant_1", "applicant_1", "applicant_1"],
+        },
+    },
+];
+var company = {
+    company_id: "",
+    vacancies: ["vancancy_id_here", "vancancy_id_here", "vancancy_id_here"],
+};
+var applicant = {
+    applicant_id: "",
+    applications: ["vacancy_id_here", "vacancy_id_here", "vacancy_id_here"],
+};
 //# sourceMappingURL=login.js.map
