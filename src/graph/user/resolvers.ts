@@ -23,7 +23,11 @@ export const user_resolvers = {
   Mutation: {
     createCompany: async (_: any, { params }: any) => {
       console.log("ARG:", params);
-      const company = Company.build({
+      // const company = Company.build({
+      //   ...params,
+      // });
+
+      const company = new Company({
         ...params,
       });
       await company.save();

@@ -14,6 +14,7 @@ var companySchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    company_name: String,
 });
 companySchema.statics.build = function (attrs) {
     return new exports.Company(attrs);

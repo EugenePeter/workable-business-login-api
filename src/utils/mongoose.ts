@@ -27,6 +27,7 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  company_name: String,
 });
 
 companySchema.statics.build = (attrs: CompanyAtrtibutes) => {

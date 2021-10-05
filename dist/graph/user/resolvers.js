@@ -90,7 +90,7 @@ exports.user_resolvers = {
                     switch (_b.label) {
                         case 0:
                             console.log("ARG:", params);
-                            company = utils_1.Company.build(__assign({}, params));
+                            company = new utils_1.Company(__assign({}, params));
                             return [4 /*yield*/, company.save()];
                         case 1:
                             _b.sent();
