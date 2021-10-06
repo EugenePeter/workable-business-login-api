@@ -18,26 +18,29 @@ interface CompanyDocument extends mongoose.Document {
   company_name: string;
 }
 
-const companySchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
+const companySchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    company_name: String,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  company_name: String,
-});
+  {
+    writeConcern: {
+      w: "majority",
+      j: true,
+      wtimeout: 1000,
+    },
+  }
+);
 
 companySchema.statics.build = (attrs: CompanyAtrtibutes) => {
   return new Company(attrs);
 };
 
 export const Company = mongoose.model<CompanyDocument, CompanyModel>("Companies", companySchema);
-
-// const company = Company.build({
-//   company_name: "workable",
-//   email: "test@gmail.com",
-//   password: "123",
-// });

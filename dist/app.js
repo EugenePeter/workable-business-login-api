@@ -46,7 +46,8 @@ var routes_1 = __importDefault(require("./routes"));
 var cors_1 = __importDefault(require("cors"));
 var mongoose_1 = __importDefault(require("mongoose"));
 dotenv_1.default.config();
-var _a = process.env.CONNECTIONSTRING, CONNECTIONSTRING = _a === void 0 ? "mongodb+srv://workableCompanyList:0HCuQLITK1ncdo3v@cluster0.khdnm.mongodb.net/workable-signup-api?retryWrites=true&w=majority" : _a;
+var CONNECTIONSTRING = (process.env ||
+    "mongodb+srv://workableCompanyList:0HCuQLITK1ncdo3v@cluster0.khdnm.mongodb.net/workable-signup-api?retryWrites=true&w=majority").CONNECTIONSTRING;
 var startServer = function () { return __awaiter(void 0, void 0, void 0, function () {
     var app, corsOptions, e_1;
     return __generator(this, function (_a) {
@@ -72,21 +73,25 @@ var startServer = function () { return __awaiter(void 0, void 0, void 0, functio
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, mongoose_1.default.connect(CONNECTIONSTRING)];
+                //@ts-ignore
+                return [4 /*yield*/, mongoose_1.default.connect(CONNECTIONSTRING, {
+                        useNewUrlParser: true,
+                        useUnifiedTopology: true,
+                    })];
             case 2:
+                //@ts-ignore
                 _a.sent();
                 console.log("CONNECTED TO MONGODB");
+                graph_1.initializeApolloServer(app);
+                app.listen(process.env.PORT, function () {
+                    console.log("apps is running on PORT: " + process.env.PORT);
+                });
                 return [3 /*break*/, 4];
             case 3:
                 e_1 = _a.sent();
                 console.log("error:", e_1);
                 return [3 /*break*/, 4];
-            case 4:
-                graph_1.initializeApolloServer(app);
-                app.listen(process.env.PORT, function () {
-                    console.log("apps is running on PORT: " + process.env.PORT);
-                });
-                return [2 /*return*/];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

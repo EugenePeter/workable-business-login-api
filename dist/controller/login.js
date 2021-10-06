@@ -44,7 +44,7 @@ var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var models_1 = require("../models");
 dotenv_1.default.config();
-var _a = process.env.JWTSECRET, JWTSECRET = _a === void 0 ? "secthequickbrownfoxjumpsovertheheadofthelazydoget" : _a;
+var JWTSECRET = process.env.JWTSECRET;
 var login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var user, result, email, id, _a, company_name, e_1;
     return __generator(this, function (_b) {
@@ -65,7 +65,9 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         token: jsonwebtoken_1.default.sign({
                             company_name: result.company_name,
                             email: result.email,
-                        }, JWTSECRET, { expiresIn: "1d" }),
+                        }, 
+                        //@ts-ignore
+                        JWTSECRET, { expiresIn: "1d" }),
                         company_name: company_name,
                         email: email,
                         id: id,

@@ -7,9 +7,9 @@ import cors from "cors";
 
 import mongoose from "mongoose";
 dotenv.config();
-const {
-  CONNECTIONSTRING = "mongodb+srv://workableCompanyList:0HCuQLITK1ncdo3v@cluster0.khdnm.mongodb.net/workable-signup-api?retryWrites=true&w=majority",
-} = process.env;
+const { CONNECTIONSTRING } =
+  process.env ||
+  "mongodb+srv://workableCompanyList:0HCuQLITK1ncdo3v@cluster0.khdnm.mongodb.net/workable-signup-api?retryWrites=true&w=majority";
 
 const startServer = async () => {
   const app = express();
@@ -32,15 +32,19 @@ const startServer = async () => {
   });
 
   try {
-    await mongoose.connect(CONNECTIONSTRING);
+    //@ts-ignore
+    await mongoose.connect(CONNECTIONSTRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("CONNECTED TO MONGODB");
+    initializeApolloServer(app);
+    app.listen(process.env.PORT, () => {
+      console.log(`apps is running on PORT: ${process.env.PORT}`);
+    });
   } catch (e) {
     console.log("error:", e);
   }
-  initializeApolloServer(app);
-  app.listen(process.env.PORT, () => {
-    console.log(`apps is running on PORT: ${process.env.PORT}`);
-  });
 };
 
 startServer();

@@ -2,8 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { User } from "../models";
 dotenv.config();
-const { JWTSECRET = "secthequickbrownfoxjumpsovertheheadofthelazydoget" } = process.env;
-
+const { JWTSECRET } = process.env;
 export const login = async (req: any, res: any) => {
   let user = new User(req.body);
 
@@ -19,6 +18,7 @@ export const login = async (req: any, res: any) => {
             company_name: result.company_name,
             email: result.email,
           },
+          //@ts-ignore
           JWTSECRET,
           { expiresIn: "1d" }
         ),

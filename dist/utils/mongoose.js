@@ -15,14 +15,15 @@ var companySchema = new mongoose_1.default.Schema({
         required: true,
     },
     company_name: String,
+}, {
+    writeConcern: {
+        w: "majority",
+        j: true,
+        wtimeout: 1000,
+    },
 });
 companySchema.statics.build = function (attrs) {
     return new exports.Company(attrs);
 };
 exports.Company = mongoose_1.default.model("Companies", companySchema);
-// const company = Company.build({
-//   company_name: "workable",
-//   email: "test@gmail.com",
-//   password: "123",
-// });
 //# sourceMappingURL=mongoose.js.map

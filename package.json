@@ -4,11 +4,15 @@
   "description": "unsplash api wrapped in graphql api",
   "author": "Eugene Peter Maestrado",
   "license": "ISC",
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.22.10"
+  },
   "scripts": {
     "watch": "tsc -w",
-    "develop": "ts-node-dev ./src/app.ts",
-    "start": "rm -rf dist && tsc && nodemon dist/app.js",
-    "build": "rm -rf dist && tsc"
+    "develop": "rm -rf dist && tsc && nodemon dist/app.js",
+    "start": "dist/app.js",
+    "rebuild": "rm -rf dist && tsc"
   },
   "dependencies": {
     "@types/node-fetch": "^2.5.10",
