@@ -10,11 +10,11 @@ var router = express_1.default.Router();
 router.get("/", function (req, res, next) {
     res.send("welcome");
 });
-router.post("/login", controller_1.login);
-// router.get("/registerCompany", (req, res) => {
-//   console.log("IAM BEING CALLED FROM REGISTER COMPANY");
-//   res.send("hi");
-// });
+// router.post("/login", login);
+// // router.get("/registerCompany", (req, res) => {
+// //   console.log("IAM BEING CALLED FROM REGISTER COMPANY");
+// //   res.send("hi");
+// // });
 router.post("/login", controller_1.login);
 exports.default = router;
 //# sourceMappingURL=index.js.map

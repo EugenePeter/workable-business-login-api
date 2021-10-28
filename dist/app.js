@@ -44,6 +44,7 @@ var dotenv_1 = __importDefault(require("dotenv"));
 var graph_1 = require("./graph");
 var routes_1 = __importDefault(require("./routes"));
 var cors_1 = __importDefault(require("cors"));
+var cookie_session_1 = __importDefault(require("cookie-session"));
 var mongoose_1 = __importDefault(require("mongoose"));
 dotenv_1.default.config();
 var CONNECTIONSTRING = (process.env ||
@@ -54,9 +55,14 @@ var startServer = function () { return __awaiter(void 0, void 0, void 0, functio
         switch (_a.label) {
             case 0:
                 app = express_1.default();
+                app.set("trust proxy", true);
                 // app.get("/", expressPlayground({ endpoint: "/graphql" }));
                 app.use(express_1.default.urlencoded({ extended: false }));
                 app.use(express_1.default.json());
+                app.use(cookie_session_1.default({
+                    signed: false,
+                    secure: true,
+                }));
                 corsOptions = {
                     origin: "*",
                     optionsSuccessStatus: 200,

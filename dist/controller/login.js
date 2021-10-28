@@ -46,7 +46,7 @@ var models_1 = require("../models");
 dotenv_1.default.config();
 var JWTSECRET = process.env.JWTSECRET;
 var login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, result, email, id, _a, company_name, e_1;
+    var user, result, email, id, _a, company_name, token, e_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -61,20 +61,31 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                 email = result.email, id = result.id, _a = result.company_name, company_name = _a === void 0 ? "" : _a;
                 console.log("COMPANY NAME:", company_name);
                 if (result) {
-                    res.json({
-                        token: jsonwebtoken_1.default.sign({
-                            company_name: result.company_name,
-                            email: result.email,
-                        }, 
-                        //@ts-ignore
-                        JWTSECRET, { expiresIn: "1d" }),
-                        company_name: company_name,
-                        email: email,
-                        id: id,
-                        successfuly_signedin: true,
-                        message: "Welcome",
-                    });
+                    token = jsonwebtoken_1.default.sign({
+                        company_name: result.company_name,
+                        email: result.email,
+                    }, 
+                    //@ts-ignore
+                    JWTSECRET, { expiresIn: "1d" });
+                    //STORE JWT INSIDE COOKIE
+                    req.session = {
+                        jwt: token,
+                    };
                 }
+                res.json({
+                    token: jsonwebtoken_1.default.sign({
+                        company_name: result.company_name,
+                        email: result.email,
+                    }, 
+                    //@ts-ignore
+                    JWTSECRET, { expiresIn: "1d" }),
+                    company_name: company_name,
+                    email: email,
+                    id: id,
+                    messagesss: "ako si genio",
+                    successfuly_signedin: true,
+                    message: "Welcome",
+                });
                 return [3 /*break*/, 4];
             case 3:
                 e_1 = _b.sent();

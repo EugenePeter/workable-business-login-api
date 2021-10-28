@@ -4,6 +4,7 @@ import expressPlayground from "graphql-playground-middleware-express";
 import { initializeApolloServer } from "./graph";
 import indexRouter from "./routes";
 import cors from "cors";
+import cookieSession from "cookie-session";
 
 import mongoose from "mongoose";
 dotenv.config();
@@ -13,9 +14,16 @@ const { CONNECTIONSTRING } =
 
 const startServer = async () => {
   const app = express();
+  app.set("trust proxy", true);
   // app.get("/", expressPlayground({ endpoint: "/graphql" }));
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+  app.use(
+    cookieSession({
+      signed: false,
+      secure: true,
+    })
+  );
   const corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
