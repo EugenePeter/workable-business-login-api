@@ -10,11 +10,31 @@ var router = express_1.default.Router();
 router.get("/", function (req, res, next) {
     res.send("welcome");
 });
-// router.post("/login", login);
-// // router.get("/registerCompany", (req, res) => {
-// //   console.log("IAM BEING CALLED FROM REGISTER COMPANY");
-// //   res.send("hi");
-// // });
 router.post("/login", controller_1.login);
+router.post("/logout", function (req, res) {
+    res
+        .clearCookie("token", {
+        httpOnly: true,
+        // path: "/",
+        secure: true,
+        // sameSite: "lax",
+        sameSite: "lax",
+        domain: "localhost",
+        expires: new Date(Date.now()),
+    })
+        .json({});
+    // req.session = null;
+    // res
+    //   .status(201)
+    //   .cookie("token", "", {
+    //     httpOnly: true,
+    //     // secure: true,
+    //     sameSite: "none",
+    //     expires: new Date(1),
+    //   })
+    // .json({});
+    console.log("logging out >>>>>>>>>>>>>>>>>");
+});
+router.get("/currentuser", controller_1.isAuthorize);
 exports.default = router;
 //# sourceMappingURL=index.js.map

@@ -4,7 +4,8 @@ import expressPlayground from "graphql-playground-middleware-express";
 import { initializeApolloServer } from "./graph";
 import indexRouter from "./routes";
 import cors from "cors";
-import cookieSession from "cookie-session";
+// import cookieSession from "cookie-session";
+import cookieParser from "cookie-parser";
 
 import mongoose from "mongoose";
 dotenv.config();
@@ -18,16 +19,19 @@ const startServer = async () => {
   // app.get("/", expressPlayground({ endpoint: "/graphql" }));
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  app.use(
-    cookieSession({
-      signed: false,
-      secure: true,
-    })
-  );
+  // app.use(
+  //   cookieSession({
+  //     signed: false,
+  //     name: "token",
+  //     // secure: true,
+  //     httpOnly: false,
+  //   })
+  // );
+  app.use(cookieParser());
   const corsOptions = {
-    origin: "*",
+    origin: "http://localhost:3000",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    credentials: false,
+    credentials: true,
   };
   app.use(cors(corsOptions));
   app.use("/", indexRouter);

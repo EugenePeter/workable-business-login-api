@@ -64,28 +64,48 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                     token = jsonwebtoken_1.default.sign({
                         company_name: result.company_name,
                         email: result.email,
+                        company_id: id,
                     }, 
                     //@ts-ignore
                     JWTSECRET, { expiresIn: "1d" });
-                    //STORE JWT INSIDE COOKIE
-                    req.session = {
-                        jwt: token,
-                    };
+                    // //STORE JWT INSIDE COOKIE
+                    // req.session = {
+                    //   jwt: token,
+                    // };
+                    // req.session = {
+                    //   token: token,
+                    // };
+                    // req.session = {
+                    //   token: token,
+                    // };
+                    // res.status(201).json({
+                    //   yay: "yay",
+                    // });
+                    res
+                        .status(201)
+                        .cookie("token", token, {
+                        httpOnly: true,
+                        // path: "/",
+                        secure: true,
+                        // sameSite: "lax",
+                        sameSite: "lax",
+                        domain: "localhost",
+                    })
+                        .json({
+                        token: jsonwebtoken_1.default.sign({
+                            company_name: result.company_name,
+                            email: result.email,
+                        }, 
+                        //@ts-ignore
+                        JWTSECRET, { expiresIn: "1d" }),
+                        company_name: company_name,
+                        email: email,
+                        id: id,
+                        messagesss: "ako si genio pedro",
+                        successfuly_signedin: true,
+                        message: "Welcome",
+                    });
                 }
-                res.json({
-                    token: jsonwebtoken_1.default.sign({
-                        company_name: result.company_name,
-                        email: result.email,
-                    }, 
-                    //@ts-ignore
-                    JWTSECRET, { expiresIn: "1d" }),
-                    company_name: company_name,
-                    email: email,
-                    id: id,
-                    messagesss: "ako si genio",
-                    successfuly_signedin: true,
-                    message: "Welcome",
-                });
                 return [3 /*break*/, 4];
             case 3:
                 e_1 = _b.sent();

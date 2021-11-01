@@ -15,10 +15,12 @@
     "rebuild": "rm -rf dist && tsc"
   },
   "dependencies": {
+    "@types/cookie-parser": "^1.4.2",
     "@types/cookie-session": "^2.0.43",
     "@types/node-fetch": "^2.5.10",
     "apollo-server-express": "^2.23.0",
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

@@ -44,7 +44,8 @@ var dotenv_1 = __importDefault(require("dotenv"));
 var graph_1 = require("./graph");
 var routes_1 = __importDefault(require("./routes"));
 var cors_1 = __importDefault(require("cors"));
-var cookie_session_1 = __importDefault(require("cookie-session"));
+// import cookieSession from "cookie-session";
+var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var mongoose_1 = __importDefault(require("mongoose"));
 dotenv_1.default.config();
 var CONNECTIONSTRING = (process.env ||
@@ -59,14 +60,19 @@ var startServer = function () { return __awaiter(void 0, void 0, void 0, functio
                 // app.get("/", expressPlayground({ endpoint: "/graphql" }));
                 app.use(express_1.default.urlencoded({ extended: false }));
                 app.use(express_1.default.json());
-                app.use(cookie_session_1.default({
-                    signed: false,
-                    secure: true,
-                }));
+                // app.use(
+                //   cookieSession({
+                //     signed: false,
+                //     name: "token",
+                //     // secure: true,
+                //     httpOnly: false,
+                //   })
+                // );
+                app.use(cookie_parser_1.default());
                 corsOptions = {
-                    origin: "*",
+                    origin: "http://localhost:3000",
                     optionsSuccessStatus: 200,
-                    credentials: false,
+                    credentials: true,
                 };
                 app.use(cors_1.default(corsOptions));
                 app.use("/", routes_1.default);
