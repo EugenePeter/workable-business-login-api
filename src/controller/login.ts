@@ -38,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
           secure: true,
           // sameSite: "lax",
           sameSite: "lax",
-          domain: "localhost",
+          domain: "127.0.0.1",
           // expires: new Date(Date.now()),
         })
         .json({
