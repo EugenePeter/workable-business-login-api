@@ -30,7 +30,7 @@ const startServer = async () => {
   app.use(cookieParser());
   const corsOptions = {
     // origin: "http://localhost:3000",
-    origin: "https://thirsty-lovelace-f3fa53.netlify.app/signin",
+    origin: "https://thirsty-lovelace-f3fa53.netlify.app",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     credentials: true,
   };
