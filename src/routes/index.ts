@@ -17,7 +17,7 @@ router.get("/logout", (req: Request, res: Response) => {
       secure: true,
       // sameSite: "lax",
       sameSite: "lax",
-      domain: "localhost",
+      // domain: "localhost",
     })
     .json({});
   console.log("logging out >>>>>>>>>>>>>>>>>");
