@@ -13,11 +13,8 @@ router.get("/logout", (req: Request, res: Response) => {
   res
     .clearCookie("token", {
       httpOnly: true,
-      // path: "/",
       secure: true,
-      // sameSite: "lax",
-      sameSite: "lax",
-      // domain: "localhost",
+      sameSite: "none",
     })
     .json({});
   console.log("logging out >>>>>>>>>>>>>>>>>");

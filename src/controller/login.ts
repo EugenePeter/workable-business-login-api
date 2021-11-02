@@ -34,12 +34,8 @@ export const login = async (req: Request, res: Response) => {
         .status(201)
         .cookie("token", token, {
           httpOnly: true,
-          // path: "/",
           secure: true,
-          // sameSite: "lax",
-          sameSite: "lax",
-          domain: "127.0.0.1",
-          // expires: new Date(Date.now()),
+          sameSite: "none",
         })
         .json({
           // token: jwt.sign(
