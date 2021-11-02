@@ -65,22 +65,11 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         company_name: result.company_name,
                         email: result.email,
                         company_id: id,
-                    }, 
-                    //@ts-ignore
-                    JWTSECRET, { expiresIn: "1d" });
+                    }, JWTSECRET, { expiresIn: "1d" });
                     // //STORE JWT INSIDE COOKIE
                     // req.session = {
                     //   jwt: token,
                     // };
-                    // req.session = {
-                    //   token: token,
-                    // };
-                    // req.session = {
-                    //   token: token,
-                    // };
-                    // res.status(201).json({
-                    //   yay: "yay",
-                    // });
                     res
                         .status(201)
                         .cookie("token", token, {
@@ -90,14 +79,18 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                         // sameSite: "lax",
                         sameSite: "lax",
                         domain: "localhost",
+                        // expires: new Date(Date.now()),
                     })
                         .json({
-                        token: jsonwebtoken_1.default.sign({
-                            company_name: result.company_name,
-                            email: result.email,
-                        }, 
-                        //@ts-ignore
-                        JWTSECRET, { expiresIn: "1d" }),
+                        // token: jwt.sign(
+                        //   {
+                        //     company_name: result.company_name,
+                        //     email: result.email,
+                        //   },
+                        //   //@ts-ignore
+                        //   JWTSECRET,
+                        //   { expiresIn: "1d" }
+                        // ),
                         company_name: company_name,
                         email: email,
                         id: id,
@@ -119,21 +112,4 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
     });
 }); };
 exports.login = login;
-var vacancies = [
-    {
-        software_engineer: {
-            id: "",
-            company_id: "",
-            applicants: ["applicant_1", "applicant_1", "applicant_1"],
-        },
-    },
-];
-var company = {
-    company_id: "",
-    vacancies: ["vancancy_id_here", "vancancy_id_here", "vancancy_id_here"],
-};
-var applicant = {
-    applicant_id: "",
-    applications: ["vacancy_id_here", "vacancy_id_here", "vacancy_id_here"],
-};
 //# sourceMappingURL=login.js.map
